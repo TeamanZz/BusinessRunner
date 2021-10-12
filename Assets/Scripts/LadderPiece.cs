@@ -45,7 +45,8 @@ public class LadderPiece : MonoBehaviour
             if (isQuestion)
             {
                 TapHandler.Instance.CanMoveOf();
-                QuestionPanel.Instance.OpenQuestionPanel();
+                Manager.Instance.CreateQuestions();
+                // QuestionPanel.Instance.OpenQuestionPanel();
                 isQuestion = false;
             }
             else

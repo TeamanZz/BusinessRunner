@@ -11,6 +11,8 @@ public class LadderPiece : MonoBehaviour
     public bool isQuestion;
     public Tween tween;
 
+    public Material defaultMaterial;
+
     private Color defaultColor;
     public Color stepColor;
 
@@ -27,7 +29,17 @@ public class LadderPiece : MonoBehaviour
         transform.GetChild(0).GetComponent<MeshRenderer>().material = moneyMaterials[0];
         transform.GetChild(1).GetComponent<MeshRenderer>().material = moneyMaterials[1];
         transform.GetChild(2).GetComponent<MeshRenderer>().material = moneyMaterials[2];
+        transform.GetChild(0).GetComponent<MeshRenderer>().material.color = Color.white;
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.white;
+        transform.GetChild(2).GetComponent<MeshRenderer>().material.color = Color.white;
         isQuestion = true;
+    }
+
+    public void MakePieceAsNotQuestion()
+    {
+        transform.GetChild(0).GetComponent<MeshRenderer>().material = defaultMaterial;
+        transform.GetChild(1).GetComponent<MeshRenderer>().material = defaultMaterial;
+        transform.GetChild(2).GetComponent<MeshRenderer>().material = defaultMaterial;
     }
 
     private void OnTriggerEnter(Collider other)

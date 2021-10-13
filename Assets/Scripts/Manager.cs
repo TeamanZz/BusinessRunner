@@ -73,16 +73,11 @@ public class Manager : MonoBehaviour
 
     public void Demotion()
     {
-
         numberOfQuestions = stage.numberOfQuestions;
-
     }
 
     public IEnumerator LevelUp()
     {
-
-
-
         numberOfQuestions = stage.numberOfQuestions;
 
         moneyText.text = Random.Range(minMoneyIncreaseValue, maxMoneyIncreaseValue).ToString() + " $";
@@ -97,7 +92,5 @@ public class Manager : MonoBehaviour
             currentWorkerPosition.text = "Ур. 2 Мл. Специалист";
             nextWorkerPosition.text = "Ур. 3 Специалист";
         }
-
     }
-
 }

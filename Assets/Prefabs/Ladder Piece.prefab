@@ -113,8 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wasStepped: 0
   isQuestion: 0
+  defaultMaterial: {fileID: 2100000, guid: 173329f5aa8b2ba4080b0b65c8732cad, type: 2}
   stepColor: {r: 0.003921569, g: 0.02745098, b: 0.12156863, a: 0}
-  dollarsParticles: {fileID: 0}
   moneyMaterials:
   - {fileID: 2100000, guid: 1660e39c644384146bc4a17f56ea85e8, type: 2}
   - {fileID: 2100000, guid: bd724400078cab04797875fec02e9cc3, type: 2}

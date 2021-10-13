@@ -32,11 +32,6 @@ public class LadderGenerator : MonoBehaviour
         stepsUntilNewQuestion = Random.Range(4, 12);
     }
 
-    private void CheckOnQuestionPiece(Transform ladderPiece)
-    {
-        ladderPiece.GetComponent<LadderPiece>().MakePieceAsQuestion();
-    }
-
     public void BuildNewLadderPiece()
     {
         if (this.enabled == false)
@@ -46,8 +41,12 @@ public class LadderGenerator : MonoBehaviour
 
         if (needNewQuestion)
         {
-            CheckOnQuestionPiece(newLadderPiece);
+            newLadderPiece.GetComponent<LadderPiece>().MakePieceAsQuestion();
             needNewQuestion = false;
+        }
+        else
+        {
+            newLadderPiece.GetComponent<LadderPiece>().MakePieceAsNotQuestion();
         }
         newLadderPiece.position = lastPieceTransform.position + buildOffset;
         lastPieceTransform = newLadderPiece;

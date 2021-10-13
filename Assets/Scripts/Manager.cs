@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using DG.Tweening;
 
 public class Manager : MonoBehaviour
 {
-
     public static Manager Instance;
+
+    public int minMoneyIncreaseValue;
+    public int maxMoneyIncreaseValue;
+
+    public TextMeshProUGUI moneyText;
+
+    public Image progressBarFill;
+
+    public TextMeshProUGUI currentWorkerPosition;
+    public TextMeshProUGUI nextWorkerPosition;
 
     [Header("Data settings")]
     public DATA data;
@@ -15,7 +26,6 @@ public class Manager : MonoBehaviour
 
     [Header("Questions settings")]
     private QuestionWindows questionWindows;
-    public int stageNumber;
     public int numberOfQuestions;
     public bool created = false;
     public List<GameObject> questions = new List<GameObject>();
@@ -24,8 +34,7 @@ public class Manager : MonoBehaviour
     {
         Instance = this;
         questionWindows = FindObjectOfType<QuestionWindows>();
-        stageNumber = 0;
-        stage = data.stages[stageNumber];
+        stage = data.stages[0];
         numberOfQuestions = stage.numberOfQuestions;
     }
 
@@ -57,29 +66,38 @@ public class Manager : MonoBehaviour
     public void Answer(bool answer)
     {
         if (answer == true)
-            LevelUp();
+            StartCoroutine(LevelUp());
         else
             Demotion();
     }
 
     public void Demotion()
     {
-        if (stageNumber > 0)
-        {
-            stageNumber--;
-            stage = data.stages[stageNumber];
-            numberOfQuestions = stage.numberOfQuestions;
-        }
+
+        numberOfQuestions = stage.numberOfQuestions;
 
     }
 
-    public void LevelUp()
+    public IEnumerator LevelUp()
     {
-        if (stageNumber < data.stages.Count - 1)
+
+
+
+        numberOfQuestions = stage.numberOfQuestions;
+
+        moneyText.text = Random.Range(minMoneyIncreaseValue, maxMoneyIncreaseValue).ToString() + " $";
+
+        var currentValue = progressBarFill.fillAmount;
+        var newValue = progressBarFill.fillAmount + Random.Range(0.1f, 0.25f);
+        DOTween.To(() => progressBarFill.fillAmount, x => progressBarFill.fillAmount = x, newValue, 0.5f).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        if (newValue >= 1)
         {
-            stageNumber++;
-            stage = data.stages[stageNumber];
-            numberOfQuestions = stage.numberOfQuestions;
+            progressBarFill.fillAmount = 0;
+            currentWorkerPosition.text = "Ур. 2 Мл. Специалист";
+            nextWorkerPosition.text = "Ур. 3 Специалист";
         }
+
     }
+
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5272e1497f2c2e04f8cd8567a31ad1b8, type: 3}
-  m_Name: clerk
+  m_Name: Clerk
   m_EditorClassIdentifier: 
   name: clerk
   numberOfQuestions: 3
